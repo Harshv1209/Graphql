@@ -27,6 +27,14 @@ export type Scalars = {
 export type Query = {
   __typename?: 'Query';
   hello?: Maybe<Scalars['String']['output']>;
+  user?: Maybe<User>;
+};
+
+export type User = {
+  __typename?: 'User';
+  age?: Maybe<Scalars['Int']['output']>;
+  email?: Maybe<Scalars['String']['output']>;
+  name?: Maybe<Scalars['String']['output']>;
 };
 
 export type AdditionalEntityFields = {
@@ -111,6 +119,8 @@ export type ResolversTypes = {
   FilterSkip: ResolverTypeWrapper<Scalars['FilterSkip']['output']>;
   Query: ResolverTypeWrapper<{}>;
   String: ResolverTypeWrapper<Scalars['String']['output']>;
+  User: ResolverTypeWrapper<User>;
+  Int: ResolverTypeWrapper<Scalars['Int']['output']>;
   AdditionalEntityFields: AdditionalEntityFields;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']['output']>;
 };
@@ -123,6 +133,8 @@ export type ResolversParentTypes = {
   FilterSkip: Scalars['FilterSkip']['output'];
   Query: {};
   String: Scalars['String']['output'];
+  User: User;
+  Int: Scalars['Int']['output'];
   AdditionalEntityFields: AdditionalEntityFields;
   Boolean: Scalars['Boolean']['output'];
 };
@@ -208,6 +220,14 @@ export interface FilterSkipScalarConfig extends GraphQLScalarTypeConfig<Resolver
 
 export type QueryResolvers<ContextType = any, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = {
   hello?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  user?: Resolver<Maybe<ResolversTypes['User']>, ParentType, ContextType>;
+};
+
+export type UserResolvers<ContextType = any, ParentType extends ResolversParentTypes['User'] = ResolversParentTypes['User']> = {
+  age?: Resolver<Maybe<ResolversTypes['Int']>, ParentType, ContextType>;
+  email?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  name?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+  __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 };
 
 export type Resolvers<ContextType = any> = {
@@ -216,6 +236,7 @@ export type Resolvers<ContextType = any> = {
   FilterLimit?: GraphQLScalarType;
   FilterSkip?: GraphQLScalarType;
   Query?: QueryResolvers<ContextType>;
+  User?: UserResolvers<ContextType>;
 };
 
 export type DirectiveResolvers<ContextType = any> = {
