@@ -1,0 +1,42 @@
+interface User {
+  id: ID!
+  fullname: String!
+  image: String
+  posts: [Post!]
+}
+type PrivateUser implements User {
+  id: ID!
+  fullname: String!
+  image: String
+  posts: [Post!]
+}
+type PublicUser implements User {
+  id: ID!
+  fullname: String!
+  image: String
+  email: Email
+  phone: String
+  address: String
+  posts: [Post!]
+}
+type Comment {
+  id: ID!
+  body: String!
+  user: PrivateUser!
+  createdAt: Date
+}
+type Post {
+  id: ID!
+  body: String!
+  caption: String
+  images: [String!]
+  createdAt: String!
+  updatedAt: String!
+  user: PrivateUser!
+  comments: [Comment!]
+}
+type Query {
+  getPost: Post
+  getUser(userId: ID!): User
+  getPosts(userId: ID!): [Post!]
+}

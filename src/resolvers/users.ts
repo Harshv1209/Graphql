@@ -1,11 +1,12 @@
 import { Resolvers } from "../generated/graphql"
 const resolvers: Resolvers = {
   Query: {
-    user: async () => {
+    getUser: async (_, { userId }) => {
       return {
-        name: "John Doe",
+        __typename: "PublicUser",
+        fullname: "John Doe",
         email: "john@example.com",
-        age: 18,
+        id: userId,
       }
     },
   },
